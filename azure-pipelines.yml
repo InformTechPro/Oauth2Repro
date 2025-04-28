@@ -1,0 +1,22 @@
+
+#add POwerShell@2 task
+# https://aka.ms/yaml
+trigger:
+- none  
+pool:
+  vmImage: 'windows-latest'
+steps:
+- script: echo Oauth2Repro!
+  displayName: 'Run a script'
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: AzurePowerShell@5
+  displayName: 'Run Script1.ps1'
+  inputs:
+    azureSubscription: 'Oauth2Repro' # service connection name
+    filePath: '$(System.DefaultWorkingDirectory)/Scripts/Script1.ps1'
+    errorActionPreference: 'stop'
+    azurePowerShellVersion: 'LatestVersion'
+    failOnStderr: true
